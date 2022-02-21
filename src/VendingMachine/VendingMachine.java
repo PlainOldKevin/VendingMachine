@@ -31,11 +31,49 @@ public class VendingMachine {
 
         System.out.println("Welcome to the vending machine!");
         System.out.println("Snack options are: ");
+        //printing all snacks
         for(int i=0; i<snacks.size(); i++){
             System.out.println((i+1) + ": " + snacks.get(i).getName() + ", " + snacks.get(i).getPrice());
         }
+        //snack selection
         System.out.println("Enter the number for your snack selection.");
-        int userInput = sc.nextInt();
+        int userInput = sc.nextInt()-1;
+        System.out.println("Selected " + snacks.get(userInput).getName());
+        System.out.println("Price: " + snacks.get(userInput).getPrice());
+        //paying for snack
+        int userMoney = 0;
+        boolean notEnough = false;
+        do{
+            if(notEnough) System.out.println("Not enough money!");
+            System.out.println("Insert money (only $1 bills accepted): ");
+            userMoney = sc.nextInt();
+            if (userMoney < snacks.get(userInput).getPrice()) notEnough = true;
+
+        }while(userMoney < snacks.get(userInput).getPrice());
+        //confirmation
+        boolean cancelled = false;
+        sc.nextLine();
+        System.out.println("Are you sure you would like to complete the transaction? (y/n)");
+        String userCancel = sc.nextLine().toLowerCase();
+        if(userCancel.equals("n")) {
+            cancelled = true;
+            System.out.println("Ok! Here is your refund: $" + userMoney);
+        }
+
+        if(!cancelled){
+            //return change
+            double change = userMoney - snacks.get(userInput).getPrice();
+            if(change == 0){
+                //print closing remarks
+            }
+            else{
+                //print how much change they get
+                //closing remarks
+            }
+        }
+
+
+
 
     }
 }
