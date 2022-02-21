@@ -1,5 +1,6 @@
 package VendingMachine;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,8 +18,9 @@ public class VendingMachine {
 
     public static void main (String[] args){
     	
-    	//initialize Scanner
+    	//initialize Scanner and DecimalFormat
     	Scanner sc = new Scanner(System.in);
+    	DecimalFormat df = new DecimalFormat("0.00");
     	
         //jack write user greeting & snack display here
         snacks.add(KitKat);
@@ -33,13 +35,13 @@ public class VendingMachine {
         System.out.println("Snack options are: ");
         //printing all snacks
         for(int i=0; i<snacks.size(); i++){
-            System.out.println((i+1) + ": " + snacks.get(i).getName() + ", " + snacks.get(i).getPrice());
+            System.out.println((i+1) + ": " + snacks.get(i).getName() + ", " + df.format(snacks.get(i).getPrice()));
         }
         //snack selection
         System.out.println("Enter the number for your snack selection.");
         int userInput = sc.nextInt()-1;
         System.out.println("Selected " + snacks.get(userInput).getName());
-        System.out.println("Price: " + snacks.get(userInput).getPrice());
+        System.out.println("Price: " + df.format(snacks.get(userInput).getPrice()));
         //paying for snack
         int userMoney = 0;
         boolean notEnough = false;
@@ -57,7 +59,7 @@ public class VendingMachine {
         String userCancel = sc.nextLine().toLowerCase();
         if(userCancel.equals("n")) {
             cancelled = true;
-            System.out.println("Ok! Here is your refund: $" + userMoney);
+            System.out.println("Ok! Here is your refund: $" + df.format(userMoney));
         }
 
         if(!cancelled){
@@ -65,10 +67,13 @@ public class VendingMachine {
             double change = userMoney - snacks.get(userInput).getPrice();
             if(change == 0){
                 //print closing remarks
+            	System.out.println("Great choice! Enjoy your " + snacks.get(userInput).getName());
             }
             else{
                 //print how much change they get
+            	System.out.println("Great choice! Your change is " + df.format(change));
                 //closing remarks
+            	System.out.println("Enjoy your " + snacks.get(userInput).getName() + "!");
             }
         }
 
