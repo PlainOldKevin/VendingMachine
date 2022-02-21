@@ -1,3 +1,5 @@
+package VendingMachine;
+
 public class Snack {
 
     String name;

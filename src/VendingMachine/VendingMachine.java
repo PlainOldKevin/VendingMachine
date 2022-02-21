@@ -1,3 +1,5 @@
+package VendingMachine;
+
 public class VendingMachine {
     //kevin make snacks here
 
