@@ -3,9 +3,9 @@ package VendingMachine;
 public class Snack {
 
     String name;
-    int price;
+    double price;
 
-    public Snack(String name,int price){
+    public Snack(String name,double price){
         this.name=name;
         this.price=price;
     }
@@ -18,11 +18,11 @@ public class Snack {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
